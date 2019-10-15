@@ -9,6 +9,8 @@ namespace Spryker\Zed\ProductReviewGui\Persistence;
 
 use Orm\Zed\Customer\Persistence\Map\SpyCustomerTableMap;
 use Orm\Zed\Product\Persistence\Map\SpyProductAbstractLocalizedAttributesTableMap;
+use Orm\Zed\Product\Persistence\SpyProductQuery;
+use Orm\Zed\ProductBundle\Persistence\SpyProductBundleQuery;
 use Orm\Zed\ProductReview\Persistence\Map\SpyProductReviewTableMap;
 use Spryker\Zed\Kernel\Persistence\AbstractQueryContainer;
 
@@ -34,6 +36,12 @@ class ProductReviewGuiQueryContainer extends AbstractQueryContainer implements P
      */
     public function queryProductReview($idLocale)
     {
+        $x = SpyProductBundleQuery::create()
+            ->joinWithSpyProductRelatedByFkProduct()
+            ->find();
+
+        dd($x->count());
+
         return $this->getFactory()
             ->getProductReviewQueryContainer()
             ->queryProductReview()
