@@ -36,12 +36,6 @@ class ProductReviewGuiQueryContainer extends AbstractQueryContainer implements P
      */
     public function queryProductReview($idLocale)
     {
-        $x = SpyProductBundleQuery::create()
-            ->joinWithSpyProductRelatedByFkProduct()
-            ->find();
-
-        dd($x->count());
-
         return $this->getFactory()
             ->getProductReviewQueryContainer()
             ->queryProductReview()
